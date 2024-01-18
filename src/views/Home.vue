@@ -23,15 +23,23 @@
             </v-card-title>
 
             <v-card-actions>
-              
-              <v-btn
-              location="center"
-              color="light-blue-darken-4"
-              variant="outlined"
-              class="mt-4"
-            >
-              Detalhes
-            </v-btn>
+              <v-dialog width="300px">
+                <template #activator="{ props }">
+                  <v-btn
+                  location="center"
+                  color="light-blue-darken-4"
+                  variant="outlined"
+                  class="mt-4"
+                  v-bind="props"
+                >
+                  Detalhes
+                </v-btn>
+
+                </template>
+                <!-- componente -->
+                <Modalpoke :pokemon="pokemon" :index="index + 1"/>
+
+              </v-dialog>
             </v-card-actions>
           </v-card>
           </v-col>
@@ -42,6 +50,7 @@
 </template>
 
 <script>
+import Modalpoke from '@/components/Modalpoke.vue';
 export default {
   name: 'Home',
   data: () => ({
@@ -54,11 +63,14 @@ export default {
       const data = await req.json();
 
       this.pokemons = data.results
-      console.log(this.pokemons)
     }
   },
   mounted() {
     this.getPokemons()
+  },
+  components: {
+    Modalpoke
+
   }
 }
 </script>
