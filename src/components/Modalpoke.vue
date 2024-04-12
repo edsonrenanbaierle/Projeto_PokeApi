@@ -52,7 +52,6 @@ export default {
 
       this.typesPokemon = data.types
       this.pokemonEspecific = data
-      console.log(data)
     }
   },
   mounted() {
